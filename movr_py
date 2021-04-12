@@ -12,9 +12,9 @@ def run(input):
 
 	return program_output
 
-commit_msg = "SUPERSECRETCOMMIT🤐thatnormalPeOpLe🫂won't_ACHCTHUALLLYUSSEE" 
+commit_msg = "SUPERSECRETCOMMIT🤐thatnormalPeOpLe🫂wont_ACHCTHUALLLYUSSE"
 id = run(f"git rev-parse :/{commit_msg}")
-
+print(id)
 is_clean = id.startswith("fatal: ")
 
 if sys.argv[1] == "add":
