@@ -29,4 +29,5 @@ elif sys.argv[1] == "reset":
 		print("COULD NOT FIND A MOVR COMMIT MESSAGE, NOTHING TO RESET!")
 		exit(0)
 	else:
-		run(f"git reset --hard {id}")
+		old_id = run(f"git show --format=%H {id}").split("\n")[0]
+                run(f"git reset --hard {old_id}")
