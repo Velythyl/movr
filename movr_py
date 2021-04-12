@@ -3,14 +3,15 @@
 import subprocess
 import sys
 
+
 def run(input):
 	input = input
 	try:
 		program_output = subprocess.check_output(input, shell=True, universal_newlines=True, stderr=subprocess.STDOUT)
 	except Exception as e:
 		program_output = e.output
-
 	return program_output
+
 
 commit_msg = "SSUPERSECRETCOMMIT🤐thatnormalPeOpLe🫂wont_ACHCTHUALLLYUSSE"
 id = run(f"git rev-parse :/{commit_msg}")
@@ -30,4 +31,4 @@ elif sys.argv[1] == "reset":
 		exit(0)
 	else:
 		old_id = run(f"git show --format=%H {id}").split("\n")[0]
-                run(f"git reset --hard {old_id}")
+		run(f"git reset --hard {old_id}")
