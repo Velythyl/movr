@@ -10,10 +10,10 @@ def run(input):
 		program_output = subprocess.check_output(input, shell=True, universal_newlines=True, stderr=subprocess.STDOUT)
 	except Exception as e:
 		program_output = e.output
-	return program_output.replace("\n", "")
+	return "\n".join(program_output.split("\n")[:-1])
 
 
-commit_msg = "SSSUPERSECRETCOMMIT🤐thatnormalPeOpLe🫂wontt_ACHCTHUALLLYUSSE"
+commit_msg = "SSSUPERSECRETCOMMIT🤐thatnormalPeOpLe🫂wontt_ACHCTHUALLLYUSSE_cause_they_arent_cavemen"
 id = run(f"git rev-parse :/{commit_msg}")
 is_clean = id.startswith("fatal: ")
 
@@ -32,4 +32,6 @@ elif sys.argv[1] == "reset":
 	else:
 		old_id = run(f"git show --format=%H{commit_msg} {id}^1")
 		old_id = old_id.split(commit_msg)[0]
-		run(f"git reset --hard {old_id}")
+		print(run(f"git reset --hard {old_id}"))
+		print(run("git push"))
+
