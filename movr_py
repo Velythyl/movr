@@ -10,10 +10,10 @@ def run(input):
 		program_output = subprocess.check_output(input, shell=True, universal_newlines=True, stderr=subprocess.STDOUT)
 	except Exception as e:
 		program_output = e.output
-	return program_output
+	return program_output.replace("\n", "")
 
 
-commit_msg = "SSSUPERSECRETCOMMIT🤐thatnormalPeOpLe🫂wont_ACHCTHUALLLYUSSE"
+commit_msg = "SSSUPERSECRETCOMMIT🤐thatnormalPeOpLe🫂wontt_ACHCTHUALLLYUSSE"
 id = run(f"git rev-parse :/{commit_msg}")
 is_clean = id.startswith("fatal: ")
 
@@ -30,5 +30,6 @@ elif sys.argv[1] == "reset":
 		print("COULD NOT FIND A MOVR COMMIT MESSAGE, NOTHING TO RESET!")
 		exit(0)
 	else:
-		old_id = run(f"git show --format=%H {id}").split("\n")[0]
+		old_id = run(f"git show --format=%H{commit_msg} {id}^1")
+		old_id = old_id.split(commit_msg)[0]
 		run(f"git reset --hard {old_id}")
