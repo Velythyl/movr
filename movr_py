@@ -1,0 +1,33 @@
+#!/usr/bin/python3
+
+import subprocess
+import sys
+
+def run(input):
+	input = input
+	try:
+		program_output = subprocess.check_output(input, shell=True, universal_newlines=True, stderr=subprocess.STDOUT)
+	except Exception as e:
+		program_output = e.output
+
+	return program_output
+
+commit_msg = "SUPERSECRETCOMMIT🤐thatnormalPeOpLe🫂won't_ACHCTHUALLLYUSSEE" 
+id = run(f"git rev-parse :/{commit_msg}")
+
+is_clean = id.startswith("fatal: ")
+
+if sys.argv[1] == "add":
+	if is_clean:
+		print(run(f"git add * && git commit -a -m \"{commit_msg}\" && git push"))
+	else:
+		print("FOUND A MOVR COMMIT MESSAGE!")
+		print("YOU MUST CLEAN THE SLATE FIRST!")
+		exit(1)
+
+elif sys.argv[1] == "reset":
+	if is_clean:
+		print("COULD NOT FIND A MOVR COMMIT MESSAGE, NOTHING TO RESET!")
+		exit(0)
+	else:
+		run(f"git reset --hard {id}")

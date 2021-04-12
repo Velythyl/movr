@@ -1,20 +1,26 @@
 commit_msg="SUPERSECRETCOMMIT🤐thatnormalPeOpLe🫂won't_ACHCTHUALLLYUSSE"
-id=$(git rev-parse :/movring)
-
+id=$(git rev-parse :/commit_msg)
 
 if [ "$1" = "add" ]; then
 	
-	if [ "$id" != "" ]; then
+	if [[ $id == "fatal: "* ]]; then
+		git add *
+		git commit -a -m "$commit_msg"
+		git push
+	else
 		echo FOUND A MOVR COMMIT MESSAGE!
 		echo YOU MUST CLEAN THE SLATE FIRST!
 		exit 1
 	fi
 
-	git add *
-	git commit -a -m "$commit_msg"
-	git push
 elif [ "$1" = "reset" ]; then
-	id=$(git rev-parse :/movring)
-	git reset --hard $id
+
+
+	if [[ $id == fatal: ]]; then
+		echo COULD NOT FIND A MOVR COMMIT MESSAGE, NOTHING TO RESET
+		exit 0
+	else
+		git reset --hard $id
+	fi
 fi
 
