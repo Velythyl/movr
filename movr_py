@@ -13,7 +13,7 @@ def run(input):
 	return program_output
 
 
-commit_msg = "SSUPERSECRETCOMMIT🤐thatnormalPeOpLe🫂wont_ACHCTHUALLLYUSSE"
+commit_msg = "SSSUPERSECRETCOMMIT🤐thatnormalPeOpLe🫂wont_ACHCTHUALLLYUSSE"
 id = run(f"git rev-parse :/{commit_msg}")
 is_clean = id.startswith("fatal: ")
 
