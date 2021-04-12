@@ -1,9 +1,0 @@
-if [ "$1" = "add" ]; then
-	git add *
-	git commit -a -m "movring"
-	git push
-elif [ "$1" = "reset" ]; then
-	id=$(git rev-parse :/movring)
-	git reset --hard $id
-fi
-
