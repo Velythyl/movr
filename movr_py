@@ -33,5 +33,5 @@ elif sys.argv[1] == "reset":
 		old_id = run(f"git show --format=%H{commit_msg} {id}^1")
 		old_id = old_id.split(commit_msg)[0]
 		print(run(f"git reset --hard {old_id}"))
-		print(run("git push"))
+		print(run("git push -f"))
 
